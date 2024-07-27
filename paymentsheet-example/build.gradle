@@ -1,5 +1,6 @@
 apply from: configs.androidApplication
 
+apply plugin: 'com.emergetools.android'
 apply plugin: 'org.jetbrains.kotlin.plugin.serialization'
 apply plugin: 'shot'
 
@@ -10,6 +11,17 @@ def getBackendUrl() {
 
 def getGooglePlacesApiKey() {
     return findProperty('STRIPE_PAYMENTSHEET_EXAMPLE_GOOGLE_PLACES_API_KEY') ?: ""
+}
+
+emerge {
+    apiToken = System.getenv("EMERGE_API_KEY")
+
+    vcs {
+        gitHub {
+            repoOwner = "EmergeTools"
+            repoName = "stripe-android"
+        }
+    }
 }
 
 dependencies {
@@ -61,6 +73,7 @@ dependencies {
     androidTestImplementation testLibs.androidx.testRunner
     androidTestImplementation testLibs.androidx.truth
     androidTestImplementation testLibs.androidx.uiAutomator
+    androidTestImplementation testLibs.emerge.snapshots
     androidTestImplementation(testLibs.espresso.accessibility) {
         exclude group: 'org.checkerframework', module: 'checker'
     }
