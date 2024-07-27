@@ -1,11 +1,22 @@
 apply from: configs.androidApplication
 
+apply plugin: 'com.emergetools.android'
 apply plugin: 'com.google.firebase.appdistribution'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'org.jetbrains.kotlin.plugin.serialization'
 
-
 def testEnvironment = System.getenv("test_environment") ?: "production"
+
+emerge {
+    apiToken = System.getenv("EMERGE_API_KEY")
+
+    vcs {
+        gitHub {
+            repoOwner = "EmergeTools"
+            repoName = "stripe-android"
+        }
+    }
+}
 
 android {
     defaultConfig {
@@ -75,6 +86,7 @@ dependencies {
     testImplementation testLibs.androidx.junit
     testImplementation testLibs.junit
 
+    androidTestImplementation testLibs.emerge.snapshots
     androidTestImplementation testLibs.espresso.core
     androidTestImplementation testLibs.androidx.composeUi
 }

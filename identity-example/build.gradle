@@ -1,8 +1,20 @@
 apply from: configs.androidApplication
 
+apply plugin: 'com.emergetools.android'
 apply plugin: 'org.jetbrains.kotlin.plugin.serialization'
 
 assemble.dependsOn('lint')
+
+emerge {
+    apiToken = System.getenv("EMERGE_API_KEY")
+
+    vcs {
+        gitHub {
+            repoOwner = "EmergeTools"
+            repoName = "stripe-android"
+        }
+    }
+}
 
 android {
     defaultConfig {
@@ -65,6 +77,8 @@ dependencies {
     implementation libs.material
 
     testImplementation testLibs.junit
+
+    androidTestImplementation testLibs.emerge.snapshots
 
     // TODO(ccen) re-enable and investigate leak in Camera
     // debugImplementation libs.leakCanary

@@ -29,6 +29,7 @@ ext.versions = [
         detekt                      : '1.23.6',
         diskLruCache                : '2.0.2',
         dokka                       : '1.9.10',
+        emergeSnapshots             : '1.1.4',
         espresso                    : '3.5.1',
         firebaseAppDistribution     : '4.0.1',
         fuel                        : '2.3.1',
@@ -201,6 +202,9 @@ ext.testLibs = [
                 truth      : "androidx.test.ext:truth:${versions.androidTest}",
                 uiAutomator: "androidx.test.uiautomator:uiautomator:${versions.uiAutomator}",
                 workManager: "androidx.work:work-testing:${versions.workManager}",
+        ],
+        emerge               : [
+                snapshots     : "com.emergetools.snapshots:snapshots:${versions.emergeSnapshots}",
         ],
         espresso             : [
                 accessibility : "androidx.test.espresso:espresso-accessibility:${versions.espresso}",
